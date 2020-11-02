@@ -1,7 +1,7 @@
 from pysc2.env import sc2_env
 from pysc2.lib import features
 from absl import app
-import DuellingDQNAgent;
+import MoveToBeacon.DuellingDQNAgent as BeaconRunner;
 import matplotlib
 import matplotlib.pyplot as plt
 matplotlib.use("TkAgg")
@@ -43,7 +43,7 @@ class DynamicUpdate():
         self.figure.savefig('dueling_dqn_plot.png')
 
 def main(unuesed_argv):
-    agent = DuellingDQNAgent.DuelingDDQNAgent(_TRAIN)
+    agent = BeaconRunner.DuelingDDQNAgent(_TRAIN)
     plot = DynamicUpdate()
     plot.on_launch();
     xdata = []

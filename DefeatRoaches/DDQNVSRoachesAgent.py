@@ -1,15 +1,10 @@
 from __future__ import print_function
-
 import sys
-
-sys.path.append("game/")
-
 import logging
 import random
 import numpy as np
 import math
 from collections import deque
-
 import keras
 from keras.models import Sequential
 from keras.layers.core import Dense
@@ -18,6 +13,7 @@ from pysc2.agents import base_agent
 from pysc2.lib import actions
 import tensorflow as tf
 
+sys.path.append("game/")
 logger = logging.getLogger('starcraft_agent')
 
 FINAL_EPSILON = 0.0005  # final value of epsilon

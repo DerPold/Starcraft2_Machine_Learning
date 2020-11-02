@@ -7,7 +7,6 @@ import logging
 import random
 import numpy as np
 from collections import deque
-
 #import keras
 from keras.models import Sequential
 from keras.layers.core import Dense
@@ -17,7 +16,7 @@ from keras.optimizers import RMSprop
 from pysc2.agents import base_agent
 from pysc2.lib import actions
 from pysc2.lib import features
-
+import tensorflow as tf
 logger = logging.getLogger('starcraft_agent')
 
 #GAME = 'move_to_beacon' # the name of the game being played for log files
@@ -87,6 +86,7 @@ smart_actions = [
 class DuelingDDQNAgent(base_agent.BaseAgent):
     def __init__(self, train):
         super(DuelingDDQNAgent, self).__init__()
+        tf.compat.v1.disable_eager_execution()
         self.state_size = 2
         self.action_size = len(smart_actions)
         self.memory = deque(maxlen=100000)
