@@ -2,8 +2,7 @@ from pysc2.env import sc2_env
 from pysc2.lib import features
 from absl import app
 
-import DefeatRoaches.DDQNVSRoachesAgent as df
-import DefeatRoaches.DDQNVSRoachesMicroAgent
+import DefeatRoaches.DDQNVSRoachesAgent as defeatRoachesAgent
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -51,7 +50,7 @@ class DynamicUpdate():
 
 
 def main(unuesed_argv):
-    agent = df.DDQNAgent(_TRAIN, _SCREEN, _SQUARE_COUNT)
+    agent = defeatRoachesAgent.DDQNAgent(_TRAIN, _SCREEN, _SQUARE_COUNT)
     plot = DynamicUpdate()
     plot.on_launch();
     xdata = []

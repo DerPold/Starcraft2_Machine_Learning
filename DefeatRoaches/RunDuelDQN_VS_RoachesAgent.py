@@ -1,7 +1,7 @@
 from pysc2.env import sc2_env
 from pysc2.lib import features
 from absl import app
-import DuellingDQNAgent;
+import DefeatRoaches.DDQNVSRoachesAgent as defeatRoachesAgent
 import matplotlib
 import matplotlib.pyplot as plt
 matplotlib.use("TkAgg")
@@ -13,7 +13,9 @@ _VISUALIZE = False
 _SCREEN = 64
 _MINIMAP = 64
 
-_TRAIN = True
+_SQUARE_COUNT = 4
+
+_TRAIN = False
 
 class DynamicUpdate():
     #Suppose we know the x range
@@ -40,10 +42,9 @@ class DynamicUpdate():
         #We need to draw *and* flush
         self.figure.canvas.draw()
         self.figure.canvas.flush_events()
-        self.figure.savefig('dueling_dqn_plot.png')
 
 def main(unuesed_argv):
-    agent = DuellingDQNAgent.DuelingDDQNAgent(_TRAIN)
+    agent = defeatRoachesAgent.DDQNAgent(_TRAIN, _SCREEN, _SQUARE_COUNT)
     plot = DynamicUpdate()
     plot.on_launch();
     xdata = []
@@ -66,6 +67,8 @@ def main(unuesed_argv):
 
                     timesteps = env.reset()
                     agent.reset()
+
+                    x = timesteps[0].observation.feature_screen
 
                     while True:
                         step_actions = [agent.step(timesteps[0])]
